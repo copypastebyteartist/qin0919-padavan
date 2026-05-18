@@ -3,25 +3,14 @@ name: Build MT7621-JDC-1
 on: 
   repository_dispatch:
   workflow_dispatch:
-  #  release:
-    #  types: [published]
-#  push:
-#    tags:
-#    - 'v*'
-  #  branches: 
-  #    - master
-#  schedule:
- #   - cron: 0 17 * * 4
-#  watch:
-   # types: [started]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@main
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -66,7 +55,7 @@ jobs:
         done
 
     - name : Upload artifact
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       with:
-        name: Padavan-MT7621-JDC-1-Q${{ env.FILE_DATE }}
+        name: Padavan-MT7621-${{ env.TNAME }}-1-Q${{ env.FILE_DATE }}
         path: /opt/images
